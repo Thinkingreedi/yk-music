@@ -17,7 +17,7 @@
     "scripts": {
         "start": "craco start",
         "build": "craco build",
-        "lint": "craco lint",
+        "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
         "eject": "react-scripts eject",
         "prettier": "prettier --write .",
         "prepare": "husky install",
