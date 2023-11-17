@@ -1,4 +1,4 @@
-# dev_doc
+dev_doc
 
 ## 创建新项目
 
@@ -430,3 +430,48 @@ export const TIME_OUT = 10000
 
 
 
+## TS类组件
+
+~~~ts
+import { PureComponent, ReactNode } from 'react'
+
+interface IProps {
+    msg: string
+    count?: number
+}
+
+interface IState {
+    name: string
+    age: number
+}
+
+export class Demo02 extends PureComponent<IProps, IState> {
+    state = {
+        name: 'john',
+        age: 18
+    }
+    render(): ReactNode {
+        return (
+            <div>
+                {this.state.name}-{this.state.age}
+                props:{this.props.msg}
+            </div>
+        )
+    }
+}
+~~~
+
+
+
+## styled-components
+
+-   安装： `npm i styled-components -D`
+-   同时安装类型声明： `npm i @types/styled-components -D`
+
+
+
+## antd集成
+
+* 安装：`npm i antd`
+* 最新的antd（"antd":"^5.7.3"），安装好后，直接在组件中使用即可
+* icon图标需单独安装 `npm i --save @ant-design/icons`
