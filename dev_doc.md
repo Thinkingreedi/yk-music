@@ -475,3 +475,26 @@ export class Demo02 extends PureComponent<IProps, IState> {
 * 安装：`npm i antd`
 * 最新的antd（"antd":"^5.7.3"），安装好后，直接在组件中使用即可
 * icon图标需单独安装 `npm i --save @ant-design/icons`
+
+
+
+### 动态样式
+
+* 安装：`npm i classnames`
+
+~~~js
+<ul className="dots">
+    {banners.map((item, index) => {
+        return (
+            <li key={item.imageUrl}>
+                <span
+                    className={classNames('item', {
+                    active: index === currentIndex
+                        })}
+                ></span>
+            </li>
+        )
+    })}
+</ul>
+~~~
+

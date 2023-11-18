@@ -12,6 +12,11 @@ export const HeaderWrapper = styled.div`
 
         ${(props) => props.theme.mixin.wrapv1}
     }
+
+    .divider {
+        height: 5px;
+        background-color: #c20c0c;
+    }
 `
 
 export const HeaderLeft = styled.div`
