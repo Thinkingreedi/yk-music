@@ -478,7 +478,7 @@ export class Demo02 extends PureComponent<IProps, IState> {
 
 
 
-### 动态样式
+## 动态样式
 
 * 安装：`npm i classnames`
 
@@ -496,5 +496,44 @@ export class Demo02 extends PureComponent<IProps, IState> {
         )
     })}
 </ul>
+~~~
+
+
+
+## 数据获取管理
+
+**方式一**
+
+~~~js
+export const fetchBannerDateAction = createAsyncThunk('banners', async (arg, { dispatch }) => {
+    const res = await getBanner()
+    dispatch(changeBannersAction(res.banners))
+})
+
+export const fetchHotRecommendAction = createAsyncThunk('hotRecommend', async (arg, { dispatch }) => {
+    const res = await getHotRecommend(8)
+    dispatch(changeHotRecommendAction(res.result))
+})
+
+export const fetchNewAlbumAction = createAsyncThunk('newAlbum', async (arg, { dispatch }) => {
+    const res = await getNewAlbum()
+    dispatch(changeNewAlbumAction(res.albums))
+})
+~~~
+
+**方式二**
+
+~~~js
+export const fetchRecommendDataAction = createAsyncThunk('fetchdata', (_, { dispatch }) => {
+    getBanner().then((res) => {
+        dispatch(changeBannersAction(res.banners))
+    })
+    getHotRecommend(8).then((res) => {
+        dispatch(changeHotRecommendAction(res.result))
+    })
+    getNewAlbum().then((res) => {
+        dispatch(changeNewAlbumAction(res.albums))
+    })
+})
 ~~~
 
