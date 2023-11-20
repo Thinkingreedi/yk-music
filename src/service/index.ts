@@ -1,9 +1,14 @@
 import { BASE_URL, TIME_OUT } from './config'
-import MYRequest from './request'
+import ETCRequest from './request'
 
-const myRequest = new MYRequest({
+const etcRequest = new ETCRequest({
     baseURL: BASE_URL,
-    timeout: TIME_OUT
+    timeout: TIME_OUT,
+    interceptors: {
+        requestSuccessFn: (config) => {
+            return config
+        }
+    }
 })
 
-export default myRequest
+export default etcRequest

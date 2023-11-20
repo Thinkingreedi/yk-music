@@ -31,9 +31,9 @@ dev_doc
 
         ```js
         const path = require('path')
-        
+
         const resolve = (dir) => path.resolve(__dirname, dir)
-        
+
         module.exports = {
             webpack: {
                 alias: {
@@ -78,8 +78,6 @@ max_line_length = off
 trim_trailing_whitespace = false
 ```
 
-
-
 **代码格式规范**
 
 -   `npm i prettier -D`
@@ -118,13 +116,11 @@ trim_trailing_whitespace = false
 
 -   配置好prettier之后，执行命令 `npm run prettier` 就可以格式化所有代码，不需要ctrl + s 保存进行格式化了
 
-
-
 **代码检测规范**
 
-*   安装 :`npm i eslint-plugin-prettier eslint-config-prettier -D ` ，生成： `npx eslint --init`
+-   安装 :`npm i eslint-plugin-prettier eslint-config-prettier -D ` ，生成： `npx eslint --init`
 
-* .eslintrc.js文件中
+-   .eslintrc.js文件中
 
 ```yaml
 module.exports = {
@@ -165,11 +161,9 @@ module.exports = {
 }
 ```
 
-
-
 ## 项目目录
 
-~~~yaml
+```yaml
 ├─assets
 │  ├─css
 │  ├─data
@@ -183,17 +177,15 @@ module.exports = {
 ├─store
 ├─utils
 └─views
-~~~
-
-
+```
 
 ## 样式重置/设置
 
-* 安装：`npm i normalize.css`，在index.tsx中引入
-* 安装：`npm i craco-less@2.1.0-alpha.0`，配置index.less/common.less/reset.less
-* 编辑craco.config.js：
+-   安装：`npm i normalize.css`，在index.tsx中引入
+-   安装：`npm i craco-less@2.1.0-alpha.0`，配置index.less/common.less/reset.less
+-   编辑craco.config.js：
 
-~~~js
+```js
 const path = require('path')
 const CracoLessPlugin = require('craco-less')
 
@@ -207,16 +199,14 @@ module.exports = {
         }
     }
 }
-~~~
-
-
+```
 
 ## **路由配置**
 
-* 安装：`npm i react-router-dom`
-* 配置单独路由文件：
+-   安装：`npm i react-router-dom`
+-   配置单独路由文件：
 
-~~~tsx
+```tsx
 //  router/index.tsx
 import React from 'react'
 import { RouteObject } from 'react-router-dom'
@@ -231,12 +221,11 @@ const routes: RouteObject[] = [
 ]
 
 export default routes
+```
 
-~~~
+-   使用HashRouter
 
-* 使用HashRouter
-
-~~~tsx
+```tsx
 //  index.tsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -253,11 +242,11 @@ root.render(
         <App />
     </HashRouter>
 )
-~~~
+```
 
-* 使用useRouters
+-   使用useRouters
 
-~~~tsx
+```tsx
 //  App.tsx
 import React from 'react'
 import { useRoutes } from 'react-router-dom'
@@ -268,17 +257,15 @@ function App() {
 }
 
 export default App
-~~~
-
-
+```
 
 ## props类型约束
 
 **方式一**
 
-~~~tsx
+```tsx
 import React from 'react'
-import type { FC,ReactNode } from 'react'
+import type { FC, ReactNode } from 'react'
 interface IProps {
     name: string
     age: number
@@ -290,13 +277,13 @@ const Download = (props: IProps) => {
 }
 
 export default Download
-~~~
+```
 
 **方式二**
 
-~~~tsx
-import React,{memo} from 'react'
-import type { FC,ReactNode } from 'react'
+```tsx
+import React, { memo } from 'react'
+import type { FC, ReactNode } from 'react'
 
 interface IProps {
     children?: ReactNode
@@ -315,15 +302,13 @@ const Download: FC<IProps> = (props) => {
     )
 }
 export default memo(Download)
-~~~
-
-
+```
 
 ## 代码片段配置
 
-* 文件--首选项--配置用户代码片段--typescriptreact.json
+-   文件--首选项--配置用户代码片段--typescriptreact.json
 
-~~~json
+```json
 "react typescript": {
   "prefix": "tsreact",
   "body": [
@@ -343,26 +328,22 @@ export default memo(Download)
   ],
   "description": "react typescript"
 }
-~~~
-
-
+```
 
 ## 路由配置优化
 
-* 根据创建的文件完善好路由配置
-* 对路由组件进行懒加载引入
-* 懒加载的组件可能没加载完成，使用Suspense包裹
-* 新建discover子页面，并进行子页面路由配置
-
-
+-   根据创建的文件完善好路由配置
+-   对路由组件进行懒加载引入
+-   懒加载的组件可能没加载完成，使用Suspense包裹
+-   新建discover子页面，并进行子页面路由配置
 
 ## 状态管理配置
 
-* 安装：`npm i @reduxjs/toolkit react-redux`
-* store文件夹下创建store.ts，index.tsx引入store，并通过Provider包裹提供store
-* 官网：https://react-redux.js.org/using-react-redux/usage-with-typescript。创建store，定义state类型，useSelector, useDispatch的ts类型
+-   安装：`npm i @reduxjs/toolkit react-redux`
+-   store文件夹下创建store.ts，index.tsx引入store，并通过Provider包裹提供store
+-   官网：https://react-redux.js.org/using-react-redux/usage-with-typescript。创建store，定义state类型，useSelector, useDispatch的ts类型
 
-~~~ts
+```ts
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useSelector, useDispatch, shallowEqual } from 'react-redux'
 
@@ -381,26 +362,21 @@ export const useAppDispatch: () => AppDispatch = useDispatch
 export const shallowEqualApp = shallowEqual
 
 export default store
-
-~~~
-
-
+```
 
 ## 封装网络请求
 
-* 安装：`npm i axios`
+-   安装：`npm i axios`
 
-* axios二次封装，配置config和request，并创建实例
-* useState()定义数据类型
+-   axios二次封装，配置config和request，并创建实例
+-   useState()定义数据类型
 
-  -   工具1： **json to typescript**，链接：[JSON to TypeScript (transform.tools)](https://transform.tools/json-to-typescript)
-  -   工具2：**在线JSON转typescript**，链接：[在线JSON转typescript工具](https://tooltt.com/json2typescript/)
-
-
+    -   工具1： **json to typescript**，链接：[JSON to TypeScript (transform.tools)](https://transform.tools/json-to-typescript)
+    -   工具2：**在线JSON转typescript**，链接：[在线JSON转typescript工具](https://tooltt.com/json2typescript/)
 
 ## 环境区分
 
-~~~ts
+```ts
 // 1.手动切换
 export const BASE_URL = 'http://codercba.com:9002'
 // export const BASE_URL = 'http://codercba.prod:9002'
@@ -418,21 +394,18 @@ export const TIME_OUT = 10000
 
 // 3.从定义的环境变量的配置文件中，加载变量
 // console.log(process.env.REACT_APP_BASE_URL)
+```
 
-~~~
+-   .env.development配置文件
+    `REACT_APP_BASE_URL=http://codercba.dev.9002`
 
-- .env.development配置文件
-  `REACT_APP_BASE_URL=http://codercba.dev.9002`
+-   .env.production配置文件
 
-- .env.production配置文件
-
-  `REACT_APP_BASE_URL=http://codercba.prod:9002`
-
-
+    `REACT_APP_BASE_URL=http://codercba.prod:9002`
 
 ## TS类组件
 
-~~~ts
+```ts
 import { PureComponent, ReactNode } from 'react'
 
 interface IProps {
@@ -459,52 +432,44 @@ export class Demo02 extends PureComponent<IProps, IState> {
         )
     }
 }
-~~~
-
-
+```
 
 ## styled-components
 
 -   安装： `npm i styled-components -D`
 -   同时安装类型声明： `npm i @types/styled-components -D`
 
-
-
 ## antd集成
 
-* 安装：`npm i antd`
-* 最新的antd（"antd":"^5.7.3"），安装好后，直接在组件中使用即可
-* icon图标需单独安装 `npm i --save @ant-design/icons`
-
-
+-   安装：`npm i antd`
+-   最新的antd（"antd":"^5.7.3"），安装好后，直接在组件中使用即可
+-   icon图标需单独安装 `npm i --save @ant-design/icons`
 
 ## 动态样式
 
-* 安装：`npm i classnames`
+-   安装：`npm i classnames`
 
-~~~js
+```js
 <ul className="dots">
     {banners.map((item, index) => {
         return (
             <li key={item.imageUrl}>
                 <span
                     className={classNames('item', {
-                    active: index === currentIndex
-                        })}
+                        active: index === currentIndex
+                    })}
                 ></span>
             </li>
         )
     })}
 </ul>
-~~~
-
-
+```
 
 ## 数据获取管理
 
 **方式一**
 
-~~~js
+```js
 export const fetchBannerDateAction = createAsyncThunk('banners', async (arg, { dispatch }) => {
     const res = await getBanner()
     dispatch(changeBannersAction(res.banners))
@@ -519,11 +484,11 @@ export const fetchNewAlbumAction = createAsyncThunk('newAlbum', async (arg, { di
     const res = await getNewAlbum()
     dispatch(changeNewAlbumAction(res.albums))
 })
-~~~
+```
 
 **方式二**
 
-~~~js
+```js
 export const fetchRecommendDataAction = createAsyncThunk('fetchdata', (_, { dispatch }) => {
     getBanner().then((res) => {
         dispatch(changeBannersAction(res.banners))
@@ -535,5 +500,4 @@ export const fetchRecommendDataAction = createAsyncThunk('fetchdata', (_, { disp
         dispatch(changeNewAlbumAction(res.albums))
     })
 })
-~~~
-
+```
